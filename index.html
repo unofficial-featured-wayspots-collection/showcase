@@ -51,8 +51,13 @@
       padding: 2px 5px;
       font-weight: 400;
     }
-    .mapboxgl-popup-content img {
+    .mapboxgl-popup-content div.portalPhoto {
       width: 100%;
+      text-align: center;
+    }
+    .portalPhoto img {
+      width: 265px;
+      margin-top: 10px;
     }
     .mapboxgl-container {
       cursor: pointer;
@@ -76,26 +81,27 @@
       width: 100%;
     }
     ul, li {
-      margin:0;
-      padding:0;
-      border:0;
-      outline:0;
-      font-size:90%;
-      vertical-align:baseline;
-      background:transparent;
-    }ul {
-      list-style:none;
-      padding-left:0;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      outline: 0;
+      font-size: 90%;
+      vertical-align: baseline;
+      background: transparent;
     }
-    ul > li {
-      display:inline;
+    ul {
+      list-style: none;
+      padding-left: 0;
     }
-    ul > li:not(:nth-child(1)):before {
-      content:" | ";
-      color:#666;
+    ul>li {
+      display: inline;
+    }
+    ul>li:not(:nth-child(1)):before {
+      content: " | ";
+      color: #666;
     }
     a {
-      text-decoration:none;
+      text-decoration: none;
     }
   </style>
 </head>
@@ -104,7 +110,7 @@
   <div id="menu">
     <ul>
       <li type="disc"><a href="https://docs.google.com/spreadsheets/d/1ry2hwuzi-SArBQhrsDAP9LTJHBbi3hAyWGo9a4JBxfI/edit?usp=sharing"><i class="fas fa-table"></i> データ(スプレッドシート)</a></li>
-      <li type="disc"><a href="https://forms.gle/JbQJandHtdTSoeLp8"><i class="fas fa-file-upload"> </i> データ登録フォーム</a></li>
+      <li type="disc"><a href="https://forms.gle/JbQJandHtdTSoeLp8"><i class="fas fa-file-upload"></i> データ登録フォーム</a></li>
     </ul>
   </div>
   <script>
@@ -1500,7 +1506,7 @@
             });
             map.on('click', 'csvData', function (e) {
               var coordinates = e.features[0].geometry.coordinates.slice();
-              var description = `<h3>` + e.features[0].properties.title + `</h3><h4><b>` + `Location: ` + `</b>` + e.features[0].properties.location + `</h4><h4><b>` + `Intel: ` + `</b><a href="` + e.features[0].properties.intel + `">` + e.features[0].properties.intel + `</a></h4><h4><b>` + `Regional Cell: ` + `</b>` + e.features[0].properties.regionalcell + `</h4><h4><b>` + `Category 1: ` + `</b>` + e.features[0].properties.category1 + `</h4><h4><b>` + `Category 2: ` + `</b>` + e.features[0].properties.category2 + `</h4><img src="` + e.features[0].properties.image + `">`;
+              var description = `<h3>` + e.features[0].properties.title + `</h3><h4><b>` + `Location: ` + `</b>` + e.features[0].properties.location + `</h4><h4><b>` + `Intel: ` + `</b><a href="` + e.features[0].properties.intel + `">` + e.features[0].properties.intel + `</a></h4><h4><b>` + `Regional Cell: ` + `</b>` + e.features[0].properties.regionalcell + `</h4><h4><b>` + `Category 1: ` + `</b>` + e.features[0].properties.category1 + `</h4><h4><b>` + `Category 2: ` + `</b>` + e.features[0].properties.category2 + `</h4><div class="portalPhoto"><img src="` + e.features[0].properties.image + `"></div>`;
               while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
                 coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
               }
